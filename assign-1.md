@@ -9,13 +9,52 @@ insert into students(student_id,first_name,last_name,date_of_birth,email,Phone_n
 values
       (107,'John','Doe','2000-04-14','johndoe@gmail.com',9177483720);
 ```
+
+output:
+
 ![alt text](image.png)
 
 2.Write an SQL query to enroll an existing student in a course, specifying the enrollment date.
 
 query:
+
 ```sql
 insert into enrollments values(408,107,201,'2024-04-14');
 ```
+
+output:
+
 ![alt text](image-1.png)
 
+3. Update the email address of a teacher in the "Teachers" table.
+
+query:
+
+```sql
+update teachers set email = 'jessicacassendra@gmail.com' where teacher_id=301;
+```
+
+output:
+
+![alt text](image-2.png)
+
+4. Write an SQL query to delete a specific enrollment record, choosing based on the student and course.
+
+query:
+
+```sql
+delete from enrollments where student_id=101 and course_id=203;
+```
+
+output:
+![alt text](image-3.png)
+
+5. Update a course to assign a specific teacher using the "Courses" table.
+
+query:
+
+```sql
+update courses set teacher_id=302 where course_id=201;
+```
+
+![alt text](image-4.png)
