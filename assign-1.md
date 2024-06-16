@@ -82,4 +82,33 @@ on c.course_id=e.course_id group by course_name;
 ```
 
 output:
+
 ![alt text](image-6.png)
+
+8. Find the names of students who have not enrolled in any course.
+
+query:
+
+```sql
+select  CONCAT(first_name,' ',last_name) as Student_name  from students as e left join enrollments as s
+on e.student_id = s.student_id where enrollment_id is null;
+```
+
+output:
+
+![alt text](image-7.png)
+
+9. Retrieve the first name and last name of students, along with the names of the courses they are enrolled in.
+
+query:
+
+```sql
+select first_name,last_name,course_name from students as s
+inner join
+enrollments as e
+on s.student_id=e.student_id inner join courses as c on e.course_id=c.course_id;
+```
+
+output:
+
+![alt text](image-8.png)
