@@ -58,3 +58,28 @@ update courses set teacher_id=302 where course_id=201;
 ```
 
 ![alt text](image-4.png)
+
+6. Write an SQL query to calculate the total payments made by a specific student.
+
+query:
+
+```sql
+select *from payments where student_id=102;
+```
+
+output:
+
+![alt text](image-5.png)
+
+7. Retrieve a list of courses along with the count of students enrolled in each.
+
+query:
+
+```sql
+select course_name,count(student_id) as Total_enrolls from courses as c
+inner join enrollments as e
+on c.course_id=e.course_id group by course_name;
+```
+
+output:
+![alt text](image-6.png)
