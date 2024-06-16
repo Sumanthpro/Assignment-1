@@ -50,6 +50,7 @@ delete from enrollments
 ```
 
 output:
+
 ![alt text](image-3.png)
 
 5. Update a course to assign a specific teacher using the "Courses" table.
@@ -61,6 +62,8 @@ update courses
 set teacher_id=302
 where course_id=201;
 ```
+
+output:
 
 ![alt text](image-4.png)
 
@@ -136,8 +139,6 @@ output:
 
 11. Calculate the average number of students enrolled in each course using aggregate functions and subqueries.
 
-12. Calculate the total payments made to courses taught by each teacher using subqueries.
-
 query:
 
 ```sql
@@ -146,6 +147,8 @@ from (select count(student_id) as count1
 from enrollments group by course_id)
 as temp_table;
 ```
+
+output:
 
 ![alt text](image-12.png)
 
@@ -157,6 +160,8 @@ query:
 select student_id from payments where amount =
 (select max(amount) from payments);
 ```
+
+output:
 
 ![alt text](image-13.png)
 
