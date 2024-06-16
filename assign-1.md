@@ -31,7 +31,9 @@ output:
 query:
 
 ```sql
-update teachers set email = 'jessicacassendra@gmail.com' where teacher_id=301;
+update teachers
+set email = 'jessicacassendra@gmail.com'
+ where teacher_id=301;
 ```
 
 output:
@@ -43,7 +45,8 @@ output:
 query:
 
 ```sql
-delete from enrollments where student_id=101 and course_id=203;
+delete from enrollments
+ where student_id=101 and course_id=203;
 ```
 
 output:
@@ -54,7 +57,9 @@ output:
 query:
 
 ```sql
-update courses set teacher_id=302 where course_id=201;
+update courses
+set teacher_id=302
+where course_id=201;
 ```
 
 ![alt text](image-4.png)
@@ -112,3 +117,74 @@ on s.student_id=e.student_id inner join courses as c on e.course_id=c.course_id;
 output:
 
 ![alt text](image-8.png)
+
+10. List names of teachers and the courses they are assigned to.
+
+query:
+
+```sql
+select CONCAT(first_name,' ',last_name) as Teacher_name ,course_name
+from courses as c
+inner join
+teachers as t
+on c.teacher_id=t.teacher_id;
+```
+
+output:
+
+![alt text](image-9.png)
+
+11. Calculate the average number of students enrolled in each course using aggregate functions and subqueries.
+
+12. Calculate the total payments made to courses taught by each teacher using subqueries.
+
+query:
+
+```sql
+select AVG(count1) as count
+from (select count(student_id) as count1
+from enrollments group by course_id)
+as temp_table;
+```
+
+![alt text](image-12.png)
+
+12. Identify the student(s) who made the highest payment using a subquery.
+
+query:
+
+```sql
+select student_id from payments where amount =
+(select max(amount) from payments);
+```
+
+![alt text](image-13.png)
+
+13. Retrieve a list of courses with the highest number of enrollments using subqueries.
+
+query:
+
+```sql
+select course_id from courses
+where course_id in
+(select course_id from enrollments group by course_id
+ having COUNT(student_id)=
+(select max(count) from (select count(student_id) as count
+from enrollments group by course_id)as temp_table));
+```
+
+output:
+
+![alt text](image-14.png)
+
+15. Identify students who are enrolled in more than one course.
+
+query:
+
+```sql
+select student_id from enrollments
+group by student_id having
+COUNT(student_id)>1;
+```
+
+![alt text](image-11.png)
