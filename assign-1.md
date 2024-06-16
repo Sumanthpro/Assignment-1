@@ -182,6 +182,18 @@ output:
 
 ![alt text](image-14.png)
 
+14. query:
+
+```sql
+select teacher_id,(select SUM(amount) from payments as p where p.student_id in
+(select e.student_id from enrollments e where e.course_id in
+(select c.course_id from courses c where c.teacher_id=t.teacher_id))) as total from teachers as t
+```
+
+output:
+
+![alt text](image-15.png)
+
 15. Identify students who are enrolled in more than one course.
 
 query:
